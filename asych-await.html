@@ -33,11 +33,8 @@
           document.body.append(div);
         }
       };
-      fetchAllPost();
-/* {
-  email: '',
-  password: '',
-} */
+      // fetchAllPost();
+
       async function fetchAllPosts() {
         try {
           const res = await fetch('http://localhost:3700/identification', {
@@ -46,7 +43,7 @@
               'Content-type': 'application/json; charset=UTF-8',
             },
             body: JSON.stringify({ email: 'nwobodogeorge98@gmail.com' }),
-          }); 
+          });
 
           if (res.ok) {
             const body = await re.json();
