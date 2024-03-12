@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // reduce, forEach push, pop, splice shift, unshift
+      // adding and removing value(s) array
+      //removing values from the end of an array
+      // removing value from the beginning of
+      // adding value to the beginning of an array
+      // adding values from the end of an array
+      // removing value from any position
+
+      //finding an element in an array
+      // finding a set in an array
+      //making copy of an array
+      names = ['kome', 'jerry', 'henry', 'joy'];
+      //reducing an array to a single value
+      let numbers = [7, 4, 6, 2, 4, 9, 8, 5, 1];
+      let sum = 0;
+
+      for (let c = 0; c < numbers.length; c++) {
+        sum += numbers[c];
+      }
+      console.log(sum);
+
+      const l = numbers.reduce((acc, el) => {
+        return el + acc;
+      }, 0);
+      console.log(l);
+
+      //simplifying the arrow function passed as callback for
+      const r = numbers.reduce((acc, el) => el + acc, 0);
+      console.log(r);
+
+      let customers = [
+        {
+          name: 'john',
+          accountBalance: 3000,
+        },
+        {
+          name: 'henry',
+          accountBalance: 1000,
+        },
+        {
+          name: 'george',
+          accountBalance: 6000,
+        },
+      ];
+      // the value that the callback returned previously will be the value that will be passed as second argument when the reduce method calls the callback
+      const totalCustomerBal = customers.reduce((acc, customer) => {
+        return customer.accountBalance + acc;
+      }, 0);
+      console.log(totalCustomerBal);
+
+      //Adding and removing value(s) from an array
+
+      // 1 adding from the end of an array;
+      const list = ['kome', 'jerry', 'henry', 'jee', 'joy'];
+      /* Removes the last element from an array and returns it.
+If the array is empty, undefined is returned and the array is not modified. */
+      console.log(list.pop()); //joy
+      console.log(list); // ) ['kome', 'jerry', 'henry', 'jee']
+      list.push('alex');
+      //.push() Appends new elements to the end of an array, and returns the new length of the array;
+      list; // ['kome', 'jerry', 'henry', 'jee', 'alex']
+
+      // 2 adding on the beginning and also removing from the beginning
+      // shift, unshift()
+      console.log(list); // ['kome', 'jerry', 'henry', 'jee', 'alex']
+      list.shift();
+      console.log(list); // ['jerry', 'henry', 'jee', 'alex']
+      list.unshift('ben'); //Elements to insert at the start of the array.
+      console.log(list); //['ben', 'jerry', 'henry', 'jee', 'alex']
+
+      //splice()
+      // list =['ben', 'jerry', 'henry', 'jee', 'alex']
+      list.splice(1, 3, 'gandi', 'kola', 'tochi');
+      console.log(list); //['ben', 'gandi', 'kola', 'tochi', 'alex']
+      list.splice(0, 3); // ['tochi', 'alex']
+      //array is a structure or a collection of values
+
+      newList = ['gandi', 'kola', 'tochi'];
+      //Accessing or printing each element
+      newList[0]; // 'gandi'
+      newList[1]; //'kola'
+      newList[2]; // 'tochi
+      // newList.forEach(element => {
+
+      // });
+      for (let c = 0; c < newList.length; c++) {
+        newList[c]; //
+      }
+      /* 
+      'gandi'
+      'kola'
+      'tochi'
+      */
+      //
+      //The most common way to traverse a one-dimensional array is by using a for loop. The loop variable will serve as an index to access each element of the array.
+
+      let [k, m] = newList;
+      console.log(k, m); //gandi kola
+      newList.forEach((element) => {
+        // alternative to for loop statement
+        console.log(element);
+      });
+
+      const j = [7, 4, 6, 2, 4, 9, 8, 5, 1];
+
+      const h = j.map((el, arr, index) => {
+        return el + 10;
+      });
+      console.log(h); // [17, 14, 16, 12, 14, 19, 18, 15, 11]
+
+      const h2 = j.map((el, arr, index) => {
+        return el;
+      });
+      let nameList = ['kome', 'jerry', 'henry', 'jee', 'joy'];
+      console.log(h2); // ) [7, 4, 6, 2, 4, 9, 8, 5, 1]
+      let newArray = [...j, ...nameList]; //  [7, 4, 6, 2, 4, 9, 8, 5, 1, 'kome', 'jerry', 'henry', 'jee', 'joy']
+      console.log(newArray); //[7, 4, 6, 2, 4, 9, 8, 5, 1]
+
+      function sumAll(a, arg3, ...argument) {
+        // rest parameter
+
+        console.log('argument', argument);
+      }
+
+      sumAll(1000, 3000, 4000, 100, 500);
+
+      const noDuplicate = [];
+      const cash = [1000, 3000, 1000, 4000, 100, 500, 500, 500]
+      
+      cash.map((el) => {
+        if (noDuplicate.includes(el)) {
+           return
+        }
+        noDuplicate.push(el);
+      });
+      //   cash.
+      console.log("array without duplicate:", noDuplicate );
+
+
+      //scope in javascript
+
+     function foo (){
+       let name='henry'
+        // console.log(name)
+      }
+      foo()
+      console.log(name)
+      // talk about scope
+    </script>
+  </body>
+</html>

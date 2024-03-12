@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .discount-form {
+        width: 400px;
+        margin: 400px auto;
+        border: 2px solid cornflowerblue;
+        padding: 20px;
+      }
+      button {
+        cursor: pointer;
+      }
+      .input-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" class="discount-form" id="discountForm">
+      <div class="input-box">
+        <label for=""> Price before discount</label>
+        <input type="text" id="priceBeforeDisc" />
+      </div>
+      <div class="input-box">
+        <label for=""> Discount</label>
+        <input type="text" id="discountPercent" />
+      </div>
+      <div class="input-box">
+        <label for=""> Price after discount</label>
+        <input type="text" id="priceAfterDisc" />
+      </div>
+      <div class="input-box" id="savedAmountBox">
+        <label for=""> You saved</label> <input type="text" id="savedAmount" />
+      </div>
+      <div class="input-box">
+        <p>Discount type</p>
+
+        <div>
+          <div>
+            <input type="radio" name="transaction-type" id="percentOff" />
+            <label for=""> Percent off</label>
+          </div>
+          <div>
+            <input type="radio" name="transaction-type" id="amountOff" />
+            <label for="">Fixed Amount Off</label>
+          </div>
+        </div>
+      </div>
+      <div class="button-group">
+        <button id="calculate" type="button">Calculate</button>
+        <button class="clear-button" id="clearButton">Clear</button>
+      </div>
+    </form>
+    <script>
+      const priceBeforeDisc = document.getElementById('priceBeforeDisc');
+      const priceAfterDisc = document.getElementById('priceAfterDisc');
+      const savedAmount = document.getElementById('savedAmount');
+      const discountPercent = document.getElementById('discountPercent');
+      const clearButton = document.getElementById('clearButton');
+      const discountForm = document.getElementById('discountForm');
+      const amountOff = document.getElementById('amountOff');
+  const    savedAmountBox=document.getElementById('savedAmountBox');
+
+      const getDiscountPercent = (oldPrice, currentPrice) => {
+        const priceDifference = oldPrice - currentPrice;
+        const discountPercent = ((priceDifference / oldPrice) * 100) / 1;
+        return {
+          priceDifference,
+          discountPercent,
+        };
+      };
+      document.getElementById('calculate').addEventListener('click', () => {
+        const oldPrice = priceBeforeDisc.value;
+        const newPrice = priceAfterDisc.value;
+        const calculation = getDiscountPercent(oldPrice, newPrice);
+        savedAmount.value = calculation.priceDifference;
+        // console.log(res);
+        discountPercent.value = calculation.discountPercent;
+      });
+
+      clearButton.addEventListener('click', () => {
+        discountForm.reset();
+      });
+
+      amountOff.addEventListener('input', () => {
+       savedAmountBox.style.display = 'none';
+      });
+
+      document.getElementById('percentOff').addEventListener('input',()=>{
+        savedAmountBox.style.display='flex'
+      })
+    </script>
+  </body>
+</html>

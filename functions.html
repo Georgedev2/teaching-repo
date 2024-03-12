@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let a; // declaration
+      a = 50; // assignment
+      let d = 90;
+      // function statement or function definition
+      function sum(a, b) {
+        let f = a * b;
+        return f;
+      }
+      let r = sum(7, 8);
+      console.log(r);
+
+      // function expression
+      const add = function (a, b) {
+        // Anonymous function expression
+        let f = a * b;
+        return f;
+      };
+      add(7, 8);
+
+      // named function expression
+      const addNumb = function (a, b, c, g = 100) {
+        return a + b + c + g;
+      };
+      const r2 = addNumb(10, 10, 30, 1);
+      console.log(r2);
+      //arrow function
+      //
+      let e = (a, b, c, g = 100) => a + b + c + g;
+
+      e(10, 10, 30, 1);
+
+      function foo( a,b) {
+        console.log(b);
+        a()
+      }
+      //callback function & Higher order function (HOF)
+      foo(function () {
+        console.log("YES")
+      }, true);
+    </script>
+  </body>
+</html>

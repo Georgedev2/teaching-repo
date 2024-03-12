@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .cards {
+        display: flex;
+        gap: 10px;
+      }
+      .card {
+        width: 50px;
+        height: 50px;
+        border: 1px solid gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <div class="cards" id="cards">
+    <section class="card" id="card-0">1</section>
+    <section class="card" id="card-1">2</section>
+    <section class="card" id="card-2">3</section>
+    <section class="card" id="card-3">4</section>
+  </div>
+
+  <div class="box"></div>
+  <body>
+    <script>
+      const divEl = document.createElement('div');
+      divEl.innerText = 'welcome to coding';
+      divEl.style.cssText = ` font-size:60px; text-align:center;color:red`;
+      document.body.appendChild(divEl); // the document refers to the html element which is the root.
+
+      const cards = document.getElementById('cards');
+      cards.nextElementSibling; //  <div class="box"></div>
+      cards.nextSibling; // '' return an empty text node
+      cards.previousElementSibling; // null;
+      cards.children; //HTMLCollection(4)
+      cards.children[0]; //    <section class="card" id="card-0"></section>
+      cards.children[1]; //    <section class="card" id="card-1"></section>
+      // adding event to a collection
+      const cardList = document.querySelectorAll('.card'); // return an html collection
+      // adding event to an html collection using loop
+      cardList.forEach((card) => {
+        console.log(card);
+        card.addEventListener('click', (e) => {
+          console.log(e.target.innerText);
+        });
+      });
+    // 
+    /* 
+    adding event to an element
+    adding event to an html collection by mapping
+     */
+    </script>
+  </body>
+</html>

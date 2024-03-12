@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .post-form {
+        width: 300px;
+        margin: 200px auto;
+        text-align: center;
+      }
+      .post-form input {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+      }
+      .post-form button {
+        width: 100%;
+        height: 40px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .list {
+        margin: 0 auto;
+        width: 60%;
+      }
+      .loading {
+        text-align: center;
+        font-size: 20px;
+      }
+      .error {
+        font-size: 11px;
+        color: rgb(233, 96, 96);
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" class="post-form">
+      <h4>Post comment</h4>
+      <input type="text" id="title" placeholder="Title of the post" /> <br />
+      <input type="text" id="description" placeholder="Post description" />
+      <br />
+      <p id="error" class="error"></p>
+      <button id="postCommentBtn" type="button">Post Comment</button>
+    </form>
+
+    <section class="list">
+      <h4>list of post</h4>
+      <p class="loading" id="loading"></p>
+      <ul class="post-list"></ul>
+    </section>
+
+    <script>
+      const title = document.querySelector('#title');
+      const description = document.querySelector('#description');
+      const postCommentBtn = document.querySelector('#postCommentBtn');
+      const postList = document.querySelector('.post-list');
+
+      let commentList = {
+        list: [],
+        setList: (input) => {
+          this.list = input;
+          updateUI(this.list);
+        },
+        addItemToList: (item) => {
+          this.list.unshift(item);
+          updateUI(this.list);
+        },
+      };
+
+      function updateUI(listOfItem) {
+        postList.innerHTML = '';
+        listOfItem.forEach((el) => {
+          const li = document.createElement('li');
+          const title = document.createElement('h4');
+          const body = document.createElement('span');
+          title.innerText = el.title;
+          body.innerText = el.body;
+          li.appendChild(title);
+          li.appendChild(body);
+
+          li.setAttribute(
+            'style',
+            'padding:10px;border:1px solid teal;margin-bottom:10px'
+          );
+          postList.appendChild(li);
+        });
+      }
+
+      postCommentBtn.addEventListener('click', () => {
+        let data = {
+          title: title.value.trim(),
+          body: description.value.trim(),
+        };
+        // const {title,body}=data
+        console.log(data.body, data.title)
+        if (!data.title && !data.body) {
+          document.querySelector('#error').innerText =
+            'Post title and body must not be empty';
+          return;
+        }
+
+        document.querySelector('#error').innerText = '';
+        document.getElementById('loading').innerText = '...loading';
+
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+          .then((res) => {
+            if (res.ok) {
+              document.querySelector('.post-form').reset();
+              document.getElementById('loading').innerText = ''; // remove loading
+              commentList.addItemToList(data);
+            }
+            new Error(`Error with a status of ${res.statue} has occurred`);
+          })
+          .catch((err) => {
+            console.error(err.message);
+          });
+      });
+
+      // fetch all previous post
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('loading').innerText = '...loading';
+
+        fetch('https://jsonplaceholder.typicode.com/posts/') // {state:pending, result: undefined} ----> {state:fulfilled, result: {// response object}}
+          .then((res) => {
+            if (res.ok) {
+              return res.json(); // {state:pending, result: undefined} ---> {state:fulfilled, result: 'human readable data'}
+            }
+            new Error(`Error with a status of ${res.statue} has occurred`);
+          })
+          .then((allPost) => {
+            document.getElementById('loading').innerText = '';
+            commentList.setList(allPost);
+          })
+          .catch((err) => {
+            console.error(err.message);
+          });
+      });
+    </script>
+  </body>
+</html>

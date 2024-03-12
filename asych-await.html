@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asycn await</title>
+  </head>
+  <body>
+    <script>
+      // callback hall
+      const fetchList = async () => {
+        const res = await fetch('https://jsonplaceholder.typicode.com/posts'); // {state: 'pending', result:null} ---> {state: 'fulfilled', result:{//.. response object}}
+        if (res.ok) {
+          const body = await res.json();
+          console.log(body);
+        }
+        // no better ways of handing an error lead to the introduction of error handling construct of syntax
+      };
+      //   fetchList();
+      // handling error in async function using try/catch block
+
+      const fetchAllPost = async () => {
+        try {
+          const res = await fetch('https://jsonplaceholder.typicode.com/posts'); // {state: 'pending', result:null} ---> {state: 'fulfilled', result:{//.. response object}}
+
+          if (res.ok) {
+            const body = await re.json();
+            console.log(body);
+          }
+        } catch (error) {
+          const div = document.createElement('div');
+          div.innerText = 'unexpected error has just happen';
+          document.body.append(div);
+        }
+      };
+      fetchAllPost();
+/* {
+  email: '',
+  password: '',
+} */
+      async function fetchAllPosts() {
+        try {
+          const res = await fetch('http://localhost:3700/identification', {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({ email: 'nwobodogeorge98@gmail.com' }),
+          }); 
+
+          if (res.ok) {
+            const body = await re.json();
+            console.log(body);
+          }
+        } catch (error) {
+          const div = document.createElement('div');
+          div.innerText = 'unexpected error has just happen';
+          document.body.append(div);
+        }
+      } //
+
+      // fetchAllPosts()
+    </script>
+  </body>
+</html>

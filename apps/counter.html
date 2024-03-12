@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .counter {
+        margin: 400px auto;
+        width: fit-content;
+      }
+      .counter button {
+        width: fit-content;
+        cursor: pointer;
+      }
+      .counter .count {
+        margin: 0px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter">
+      <button class="btn" , id="decrement-btn">-</button>
+      <span class="count" id="count">0</span>
+      <button id="increment-btn">+</button>
+    </div>
+    <script>
+      const decrementBtn = document.querySelector('#decrement-btn');
+      const incrementBtn = document.querySelector('#increment-btn');
+      const count = document.querySelector('#count');
+
+      let counter = {
+        count: 0,
+        increaseCount: function () {
+          return (this.count += 1);
+          //+= added the value on the RHS to what is stored inside
+          //of the variable on the LHS the result obtained is stored in the variable on the LHS
+        },
+        decreaseCount: function () {
+            if(this.count==0){
+                return this.count
+            }
+          return (this.count -= 1);
+        },
+      };
+      //   counter.IncreaseCount();
+      //any object calling the function that contains a
+      // 'this' keyword  will be the value of the 'this' keyword
+      document.addEventListener('DOMContentLoaded', () => {
+        // console.log('loaded')
+        count.innerText = counter.count;
+      });
+      incrementBtn.addEventListener('click', () => {
+        count.innerText = counter.increaseCount();
+      });
+      decrementBtn .addEventListener('click',()=>{
+        count.innerText = counter.decreaseCount();
+      })
+    </script>
+  </body>
+</html>

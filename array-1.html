@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays</title>
+  </head>
+  <body>
+    <script>
+      let name = 'ruth';
+      let age = 90;
+      const printInf = (name, age) => {
+        console.log(name, age);
+      };
+      printInf(name, age);
+
+      let obj = {
+        name: 'ruth',
+        age: 90,
+      };
+      let obj2 = [
+        'ruth',
+        90,
+        false,
+        null,
+        'great',
+        () => {
+          console.log('like me');
+        },
+      ];
+      obj2.length;
+
+      obj2[5]();
+
+      let arr = ['beb', 'kelly', 'ada', 'henry', 'ruth', 'kome', 'belly'];
+
+      for (let count = 0; count < arr.length; count++) {
+        console.log(arr[count]);
+      }
+
+      // search for names
+      const searchForNames = (name) => {
+        for (let count = 0; count < arr.length; count++) {
+          if (arr[count] == name) {
+            console.log(name + ' ' + 'is here');
+            return;
+          }
+          //   console.log(name + ' ' + 'not here');
+        }
+      };
+      searchForNames('kome');
+      let prices = [50000, 3000, 4000, 2000];
+
+      let totalPrices = 0;
+      for (let count = 0; count < prices.length; count++) {
+        totalPrices += prices[count];
+      }
+      console.log(totalPrices);
+      // check for a value it recives as argument in an array
+      console.log(prices.includes(1000));
+
+      let num = 2000;
+      let num3 = '2000';
+      console.log(num == num3);
+      console.log(num === num3); // === strick comparison
+      // for an expression using the triple equal operator to return true the LHS operand and the RHS operand in value and in data type
+
+      console.log(prices.indexOf(1000)); // -1
+      console.log(prices.indexOf(50000)); // 0
+      console.log(prices.indexOf(2000)); // 3
+      console.log(prices.indexOf(50000, 1)); // -1
+      //they compare there argument with each value in the array
+
+      let facebookUsers = [
+        {
+          username: 'ruthy',
+          name: 'ruth',
+          followers: 3000,
+          isVerify: false,
+        },
+        {
+          username: 'dark_man',
+          name: 'john',
+          followers: 300,
+          isVerify: false,
+        },
+        {
+          username: 'rude_boy',
+          name: 'ruth',
+          followers: 500000,
+          isVerify: true,
+        },
+      ];
+
+      let user = facebookUsers.find((user, index, arr) => {
+        // console.log(user, index,arr)
+        if (user.username === 'dark_man') {
+          return true;
+        }
+      });
+      console.log(user);
+      // increase users by 1000
+      let newUsers = facebookUsers.map((user, index, arr) => {
+        user.followers += 1000;
+        return user;
+      });
+
+      console.log(newUsers);
+      let ff = [];
+      let newUsers2 = facebookUsers.filter((user, index, arr) => {
+        if (user.username !== 'dark_man') {
+          return true;
+        }
+      });
+      console.log(newUsers2);
+      let numbers = [7, 4, 6, 2, 4, 9, 8, 5, 1];
+
+    console.log(numbers.slice(0,4)) 
+    
+    console.log(numbers.filter((numb)=>{ return numb>4}))
+    // reduce, forEach push, pop, splice shift, unshift
+    // adding and removing value(s) array
+    //removing values from the end of an array
+    // removing value from the beginning of
+    // adding value to the beginning of an array
+    // adding values from the end of an array
+    // removing value from any position
+
+
+    //finding an element in an array
+    // finding a set in an array
+    //making copy of an array
+
+    //reducing an array to a single value
+    </script>
+  </body>
+</html>

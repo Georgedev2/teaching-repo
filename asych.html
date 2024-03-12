@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [1, 3, 4, 5, 7, 8];
+      const r4 = arr.reduce((acc, el) => {
+        return acc + el;
+      }, 0);
+      console.log(r4);
+      //EX:1
+      let sumNumber = (...a) => {
+        return a.reduce((acc, el) => acc + el, 0);
+      };
+
+      const r = sumNumber(11, 2.3, 5.372);
+      console.log(r); // 18.672
+      r.toFixed(1); // '18.4'
+
+      //EX 2
+      let sumNumbers = (...a) => {
+        let result;
+        setTimeout(() => {
+          result = a.reduce((acc, el) => acc + el, 0);
+        }, 3000);
+        return result;
+      };
+      const r2 = sumNumbers(11, 2.3, 5.372);
+      console.log(r2); //
+      // r2.toFixed(1); // Uncaught TypeError: Cannot read properties of undefined (reading 'toFixed')
+
+      //EX:3
+      const cb = (z) => {
+        let result = z.toFixed(1); //
+        console.log(result);
+      };
+
+      let sumNumberB = (cb, ...a) => {
+        // a= [ 11, 2.3,5.372]
+        let result;
+        setTimeout(() => {
+          result = a.reduce((acc, el) => acc + el, 0);
+          cb(result);
+        }, 3000);
+        return result;
+      };
+
+      const rB = sumNumberB(cb, 11, 2.3, 5.372); // store the return value of the function in the memory location where the function is stored
+      //   rB.toFixed(1); //    rB=undefined
+
+      //using promise
+      // {PromiseState:pending, PromiseResult:''}
+      const p = new Promise((resolve, reject) => {
+        //when resolve is called
+        resolve('car'); // {PromiseState:fulfilled, PromiseResult:'Car'}
+
+        // reject('i could not buy the car')// {PromiseState:rejected, PromiseResult:'i could not buy the car'}
+      });
+
+      const readFile = () => {
+        // reading of the file in 10 minutes
+        fileData = 'data ....';
+        return fileData;
+      };
+
+      const promise = new Promise((resolve, reject) => {
+        const data = readFile(); // 400GB
+        if (data) {
+          resolve(data);
+        } else {
+          reject('The file could not be read'); // { message:'The file could not be read'}
+        }
+      });
+
+      promise.then((data) => {
+        console.log(data);
+      });
+      promise.catch((err) => {
+        console.log(err.message);
+      });
+
+      // chaining the promise
+      promise
+        .then((data) => {
+          console.log(data);
+        })
+        .then((e) => {}) // {PromiseState:fulfilled, PromiseResult:undefine}
+        .catch((err) => {
+          console.log(err.message);
+        });
+      // {PromiseState:pending, PromiseResult:''}
+
+      // when resolve() is called
+      //  {PromiseState:fulfilled, PromiseResult:'data ....'}
+
+      // when reject( ) is called the final promise state will be this
+      // {PromiseState:rejected, PromiseResult:'Rain was failing'}
+
+      // calling a function that return a promise and then listen for the state of the promise
+      // consuming promise
+      fetch('https://jsonplaceholder.typicode.com/posts/') // {state:pending, result: undefined} ----> {state:fulfilled, result: {// response object}}
+        .then((res) => {
+          return res.json(); // {state:pending, result: undefined} ---> {state:fulfilled, result: 'human readable data'}
+        })
+        .then((allPost) => {
+          const ulNode = document.createElement('ul');
+          allPost.forEach((post) => {
+            const liNode = document.createElement('li');
+            const postTitle = document.createElement('h4');
+            const postBody = document.createElement('span');
+            postTitle.innerText = post.title;
+            postBody.innerText = post.body;
+            liNode.appendChild(postTitle);
+            liNode.appendChild(postBody);
+
+            liNode.setAttribute(
+              'style',
+              'padding:10px;border:1px solid teal;margin-bottom:10px'
+            );
+            ulNode.appendChild(liNode);
+            document.body.appendChild(ulNode);
+          });
+        })
+        .catch((err) => {
+          const p = document.createElement('p');
+          p.innerText = err.message;
+          document.body.appendChild(p);
+        });
+    </script>
+  </body>
+</html>

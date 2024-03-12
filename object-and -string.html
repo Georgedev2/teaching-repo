@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // all data that can be stored in a variable falls into any of of this 6 categories
+      // all values falls into any one of this 6 categories. any data that is stored in a variable falls into any one of this 6 categories
+      // string, number, boolean, null, undefined, object
+      let number = 70; // number
+      let bal = 300.789; // number
+
+      // string
+      let name = 'Ada';
+      let school = 'John close Hight school';
+      let age = '60'; // the quote wrapping the data makes it a string type
+      let c = 'true'; // the quote makes the value to be classified as a string. any value wrapped in quote is regarded as a string
+      let q = 'false';
+
+      // Boolean (false or true) only two category of values false into this categories
+
+      let isAMember = true;
+      let checked = false;
+
+      // null type only one value is inside of this set
+      let foo = null;
+      // undefined type
+      let yay = undefined;
+      // combining one or more primitive data result in a data type called object
+      let obj = {
+        name: 'Ada',
+        school: 'John close Hight school',
+        isAdult: false,
+        accountBalance: 6000.8,
+        nimNumber: 7,
+        sayName: function () {},
+      };
+      // reading data of an object
+
+
+    
+      console.log(obj.accountBalance);
+      obj.name; // 'Ada';
+      obj.school; // 'John close Hight school'
+
+      obj.name = 'Kome'; // get the properties and then use assignment operator put value in it
+      console.log(obj);
+
+      let sentence = 'i am coming to see \n  you';
+      console.log(sentence);
+
+      let words = "according to john 'he said he will be coming'  you";
+      console.log(words);
+      let add = "has's car";
+      console.log(add); //has's car
+
+      z = 'welcome to \n japan';
+      //string concatenation
+
+      let v = 'kome';
+      let l = 'great';
+      console.log(v + l); // join together
+      b = v + ' ' + l;
+      console.log(b);
+
+      let person = {
+        name: 'john',
+        age: 10,
+        account: {
+          bal: 40000,
+          accountNo: 56899324,
+          accountOfficer: {
+            name: 'funke',
+            age: 30,
+            id: 3,
+            department: 'marketing',
+          },
+        },
+      };
+      //creating object using object literal notaion     {}
+      //fetching properties of an object
+      person.name; // john
+      person.account; // {...}
+      person.account.bal; // 400000
+      person.account.bal.accountNo; //  56899324
+      person.account.accountOfficer; // {...}
+      person.account.accountOfficer.age; //30
+
+      //creating object using factory function
+      // a factory function is  a function that returns an object.
+      function createPerson(myName, myId) {
+        return {
+          name: myName,
+          id: myId,
+        };
+      }
+      const r = createPerson('kome', 8);
+      console.log(r);
+      // this keyword in object
+
+      let obj2 = {
+        name: 'sandra',
+        age: 11,
+        sayHi: function () {
+          console.log(this.name + ' ', this.age);
+        },
+      };
+      obj2.sayHi();
+      // using object constructor
+      // CreatePerson pascal naming convention
+      function CreatePerson(name, height, eyeColor) {
+        //this={}
+        this.name = name;
+        this.height=height;
+        this.eyeColor=eyeColor;
+      }
+      new  CreatePerson("jerry", '6ft','brown')// CreatePerson {name: 'jerry', height: '6ft', eyeColor: 'brown'}
+      // this={} step 1
+      // then execute the rest of the code
+      //return the this keyword
+
+      let car={
+        make:'toyota',
+        type:'suv',
+        manufacturingYear:2033
+      }
+      console.log(car)// {make: 'toyota', type: 'suv', manufacturingYear: 2033}
+      car.color='black'
+      // let log car after adding a property to it
+      console.log(car)// {make: 'toyota', type: 'suv', manufacturingYear: 2033, color: 'black'}
+      car.manufacturingYear=2015;
+      console.log(car)// {make: 'toyota', type: 'suv', manufacturingYear: 2015, color: 'black'}
+    </script>
+  </body>
+</html>
